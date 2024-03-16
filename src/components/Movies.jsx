@@ -2,21 +2,23 @@ import { useEffect, useState } from "react";
 
 const Movies = ({ moviesData }) => {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     const saveMovieHandler = async () => {
       const response = await moviesData;
       if (response && response.length > 0) {
+        setLoading(false)
         setMovies(response);
       }
     };
     saveMovieHandler();
   }, [moviesData]);
-  
+ const loader = <p className="text-2xl text-orange-600 mx-auto">Loading Movies...</p> 
   return (
     <div className="container px-5 py-10 mx-auto">
     <h1 className="font-medium text-4xl text-gray-900 m-5 text-center">Movies List from <span className="font-medium text-4xl text-cyan-500 text-center">TheMovieDB</span></h1>
       <div className="flex flex-wrap -m-4">
-        {Object.entries(movies).map((movie) => (
+        {loading ? loader : Object.entries(movies).map((movie) => (
           <div key={movie[1].id} className="p-4 lg:w-1/4 md:w-1/2 sm:w-full">
             <div className="h-full flex flex-col items-center text-center w-full">
               <img
