@@ -13,7 +13,7 @@ const Navbar = (props) => {
   };
 
   return (
-    <header className="text-gray-600 body-font bg-violet-400">
+    <header className="sticky top-0 z-50 text-gray-600 body-font bg-violet-400">
       <div className="container mx-auto flex flex-wrap justify-between p-5 flex-col md:flex-row items-center">
         <span className="ml-3 text-xl text-white">MovieStream</span>
 
